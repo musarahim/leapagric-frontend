@@ -5,6 +5,7 @@ import Link from 'next/link';
 // pages/index.js
 import { useState } from 'react';
 import { Chat } from './components/Chat';
+import Search from './components/Search';
 
 
 const HomePage = () => {
@@ -69,8 +70,11 @@ const HomePage = () => {
                   )}
                 </button>
               </div>
+             
             </div>
+           
           </div>
+          
           <div>
             <div
               className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
@@ -107,6 +111,7 @@ const HomePage = () => {
               </ul>
             </div>
           </div>
+          <Search />
         </div>
       </nav>
       <main>
@@ -114,9 +119,9 @@ const HomePage = () => {
           <div className="container mx-auto text-center">
             <h1 className="text-5xl text-gray-800 font-bold mb-6">Welcome to Leap Agric Farmers Application</h1>
             <p className="text-xl text-gray-600 mb-8">Find the best products for your farm</p>
-            <a href="#" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full">
+            <Link href="/dashboard" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full">
               Get Started
-            </a>
+            </Link>
           </div>
         </section>
         <section id="about" className="bg-gray-100 py-20">
