@@ -3,7 +3,7 @@ import React from 'react'
 function page() {
   return (
     <main>
-      <h1>Google</h1>
+      <h1>Request password reset</h1>
     </main>
   )
 }
