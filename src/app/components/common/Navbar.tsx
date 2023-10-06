@@ -30,7 +30,6 @@ function Navbar() {
   const handleLogout = () => {
     logout(undefined).unwrap().then((res) => {
       dispatch(setLogOut());
-      router.push("/");
 
     });
   }
@@ -134,7 +133,7 @@ function Navbar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <Link
                             href="#"
                             className={classNames(
                               active ? "bg-gray-100" : "",
@@ -142,13 +141,14 @@ function Navbar() {
                             )}
                           >
                             Settings
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                          href="/dashboard"
+                            type="button"
                             onClick={handleLogout}
                             className={classNames(
                               active ? "bg-gray-100" : "",
@@ -156,7 +156,7 @@ function Navbar() {
                             )}
                           >
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>

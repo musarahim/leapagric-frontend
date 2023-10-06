@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import RegisterForm from "./RegisterForm";
+import { SocialButtons } from "@/app/components";
 
 export const metadata: Metadata = {
   title: "Farm Wise | Register",
@@ -30,6 +31,7 @@ function page() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
          
           <RegisterForm />
+          <SocialButtons/>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{" "}

@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
-import { H2Text } from "@/app/components";
+import { H2Text, SocialButtons } from "@/app/components";
 import LoginForm from "./LoginForm";
 
 export const metadata: Metadata = {
@@ -33,6 +33,7 @@ function page() {
       
          
          <LoginForm/>
+         <SocialButtons/>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account?{" "}
