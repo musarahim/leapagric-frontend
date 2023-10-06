@@ -1,14 +1,18 @@
-"use client";
-import React from "react";
 
-import { Formik, Form } from "formik";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { InputField, SubmitButton,H2Text } from "@/app/components";
-import useLogin from "./login";
+import { Metadata } from "next";
+import { H2Text } from "@/app/components";
+import LoginForm from "./LoginForm";
+
+export const metadata: Metadata = {
+  title: "Farm Wise | Login",
+  description: "Login to your account",
+};
 
 function page() {
-  const { onSubmit, intialValues, isLoading,validationSchema } = useLogin();
+  
 
   return (
     <main>
@@ -26,28 +30,9 @@ function page() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <Formik initialValues={intialValues} onSubmit={onSubmit} validationSchema={validationSchema} >
-            <Form className="space-y-6">
-              <InputField
-                name="username"
-                label="Username"
-                type="text"
-                Id="id_username"
-                required
-              />
-              <InputField
-                name="password"
-                link={{
-                  linkText: "Forgot Password?",
-                  linkUrl: "/password-reset",
-                }}
-                label="Password"
-                type="password"
-                required
-              />
-              <SubmitButton isLoading={isLoading} title="Login" />
-            </Form>
-          </Formik>
+      
+         
+         <LoginForm/>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account?{" "}

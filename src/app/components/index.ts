@@ -6,3 +6,4 @@ export {default as PhoneField} from '../components/forms/PhoneInputField'
 export {default as Spinner} from './common/Spinner';
 export {default as SubmitButton} from './forms/SubmitButton';
 export {default as H2Text} from './common/H2Text';
+export {default as Form} from './forms/AppForm';

@@ -1,54 +1,15 @@
-'use client'
-import React, { FormEvent } from "react";
 import Image from "next/image";
-import {useRouter} from "next/navigation"
-import { Formik,Form  } from "formik";
 import Link from "next/link";
-import {toast} from "react-toastify"
-import {InputField,SelectField,PhoneField,SubmitButton} from "@/app/components"
-import { User } from "../../../../type";
-import { useRegisterMutation } from "@/redux/features/authApiSlice";
+import { Metadata } from "next";
+import RegisterForm from "./RegisterForm";
 
-
+export const metadata: Metadata = {
+  title: "Farm Wise | Register",
+  description: "Login to your account",
+};
 
 function page() {
 
-  const [register, {isLoading}] = useRegisterMutation()
-  const router = useRouter()
-
-  const intialValues = {
-    email:'',
-    first_name: '',
-    last_name: '',
-    phone_number: '',
-    alternative_contact: '',
-    gender:1,
-    username: '',
-    password: '',
-   re_password: ''
-  }
-  const genderOptions = [
-        {id: 1, name:'Male'},
-        {id: 2, name:'Female'},
-  ]
-
-
-  const onSubmit = (values: User) => {
-   // event.preventDefault();
-
-    register(values).unwrap().then((res) => {
-      console.log(res);
-      toast.success("Account created successfully, please check email to verify account")
-      router.push("/auth/login")
-    }
-    ).catch((err) => {
-      console.log(err);
-      toast.error("Error creating account, please try again")
-    })
-   
-  }
-
-  
 
   return (
     <main>
@@ -68,25 +29,7 @@ function page() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
          
-          <Formik
-            initialValues={intialValues}
-            onSubmit={onSubmit}
-            >
-        <Form className="space-y-6">
-            <InputField name="first_name" label="First Name" type="text" required />
-            <InputField name="last_name" label="Last Name" type="text" required />
-            <PhoneField name="phone_number" label="Phone Number" />
-            <PhoneField name="alternative_contact" label="Alternative Contact" />
-            <SelectField name="gender" options={genderOptions} label="Gender" />
-            <InputField name="username" label="Username" type="text" required />
-            <InputField name="email" label="Email Address" type="email" required />
-            <InputField name="password" label="Password" type="password" required />
-            <InputField name="re_password" label="Confirm Password" type="password" required />
-            <SubmitButton isLoading={isLoading} title="Sign up" />
-           
-          
-          </Form>
-          </Formik>
+          <RegisterForm />
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{" "}

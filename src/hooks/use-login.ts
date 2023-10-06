@@ -1,13 +1,13 @@
-"use client"
+
 import {useRouter} from "next/navigation"
 import {toast} from "react-toastify"
-import { LoginUser } from "../../../../type";
+import { LoginUser } from "../../type";
 import { useLoginMutation } from "@/redux/features/authApiSlice";
 import { setAuth } from "@/redux/features/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import * as Yup from 'yup';
 
-function login() {
+function Uselogin() {
     const [login, {isLoading}] = useLoginMutation()
     const router = useRouter()
     const dispatch = useAppDispatch()
@@ -46,4 +46,4 @@ function login() {
   }
 }
 
-export default login
+export default Uselogin

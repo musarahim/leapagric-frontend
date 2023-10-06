@@ -28,6 +28,9 @@ type LoginUser = {
     username: string,
     password: string,
 }
+type UserEmail = {
+    email: string
+}
 
 type SocialAuthArgs = {
     provider: string,
