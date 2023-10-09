@@ -144,7 +144,7 @@ const HomePage = () => {
                 </ul>
               </div>
               <div className="md:w-1/2">
-                <Image src="/local.jpg" alt="Farmers Application - About" className="rounded-lg" />
+                <Image src="/local.jpg" width={500} height={1000} alt="Farmers Application - About" className="rounded-lg" />
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@ const HomePage = () => {
             <h2 className="text-4xl text-gray-800 font-bold mb-6">Our Products</h2>
             <div className="flex flex-col md:flex-row items-center justify-center">
               <div className="md:w-1/2 mx-2">
-                <Image src="/local.jpg" alt="Farmers Application - Products" className="rounded-lg mb-8" />
+                <Image src="/local.jpg" width={500} height={1000} alt="Farmers Application - Products" className="rounded-lg mb-8" />
               </div>
               <div className="md:w-1/2 mx-2">
                 <p className="text-lg text-gray-600 mb-10">
@@ -184,7 +184,7 @@ const HomePage = () => {
                <Chat />
               </div>
               <div className="md:w-1/2">
-                <Image src="/chat_logo.png" alt="Farmers Application - About" className="rounded-lg" />
+                <Image src="/chat_logo.png" height={200} width={600} alt="Farmers Application - About" className="rounded-lg" />
               </div>
             </div>
           </div>
@@ -198,7 +198,7 @@ const HomePage = () => {
             </p>
             <div className="flex flex-col md:flex-row items-center justify-center">
               <div className="md:w-1/2 mx-2">
-                <Image src="/local.jpg" alt="Farmers Application - Contact" className="rounded-lg mb-8" />
+                <Image src="/local.jpg" width={500} height={1000} alt="Farmers Application - Contact" className="rounded-lg mb-8" />
               </div>
               <div className="md:w-1/2">
                 <p className="text-xl text-gray-800 mb-4">Contact Information:</p>
