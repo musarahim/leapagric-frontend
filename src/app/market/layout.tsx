@@ -21,13 +21,14 @@ export default function RootLayout({
       <body className={inter.className}>
        
           <Provider>
+        
           <Setup />
           <Navbar />
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{children}</div>
       
         <Footer />
+       
           </Provider>
-        
         </body>
     </html>
   )

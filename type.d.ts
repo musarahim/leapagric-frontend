@@ -46,3 +46,15 @@ type Gender={
     id: number,
     name: string
 }
+
+type Farmer = {
+      date_of_birth:string,
+      level_of_education: string,
+      occupation: string,
+      experience: number,
+      farmer_group : string,
+      production_scale: string,
+      general_remarks: string,
+      status: string,
+      approved_date: string
+}

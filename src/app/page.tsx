@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div>
       <Head>
-        <title>Leap Agric  | Home</title>
+        <title>Farm Wise  | Home</title>
         
       </Head>
    
@@ -30,7 +30,7 @@ const HomePage = () => {
                    alt="Farmers Application - Products"
                    className="rounded-md mx-2"
                  />
-                <h2 className="text-2xl text-green-600 font-bold">Leap Agric</h2>
+                <h2 className="text-2xl text-green-600 font-bold">Farm Wise</h2>
                 </ul>
               </a>
               
@@ -114,10 +114,10 @@ const HomePage = () => {
           <Search />
         </div>
       </nav>
-      <main>
+      <main className='prose'>
         <section id="hero" className="py-20">
           <div className="container mx-auto text-center">
-            <h1 className="text-5xl text-gray-800 font-bold mb-6">Welcome to Leap Agric Farmers Application</h1>
+            <h1 className="text-5xl text-gray-800 font-bold mb-6">Welcome to Farm Wise</h1>
             <p className="text-xl text-gray-600 mb-8">Find the best products for your farm</p>
             <Link href="/dashboard" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full">
               Get Started

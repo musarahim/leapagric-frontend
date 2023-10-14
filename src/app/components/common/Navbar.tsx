@@ -5,17 +5,42 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { logout as setLogOut } from "@/redux/features/authSlice";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
+import { NavLink,DropdownMenu } from '@/app/components';
+import {
+  ArrowPathIcon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+} from '@heroicons/react/24/outline'
+import {  PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", current: true },
-  { name: "Markets", href: "#", current: false },
+  { name: "Markets", href: "/market", current: false },
   { name: "Farm Calender", href: "#", current: false },
   { name: "Extension Services", href: "#", current: false },
   
 ];
+const farmer_links = [
+    { name: 'My Dashboard', description: 'View A Summery of your farm from here', href: '/farmer/dashboard', icon: ChartPieIcon },
+    { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: CursorArrowRaysIcon },
+    { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: FingerPrintIcon },
+    { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
+    { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  ]
+
+  const callsToAction = [
+
+    { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
+    { name: 'Contact sales', href: '#', icon: PhoneIcon },
+    
+  ]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -23,6 +48,7 @@ function classNames(...classes: string[]) {
 
 function Navbar() {
   const dispatch = useAppDispatch();
+  const pathname = usePathname();
   const { isAuthenticated } = useAppSelector((state) => state.auth);
   const [logout] = useLogoutMutation();
   const router = useRouter();
@@ -33,6 +59,53 @@ function Navbar() {
 
     });
   }
+  const isSelected = (path: string) => (pathname === path ? true : false);
+  const isDropdownSelected = (path: string) => (pathname.indexOf(path) ? false : true);
+
+	const authLinks = (isMobile: boolean) => (
+		<>
+			<NavLink
+				isSelected={isSelected('/dashboard')}
+				isMobile={isMobile}
+				href='/dashboard'
+			>
+				Dashboard
+			</NavLink>
+			<NavLink isMobile={isMobile}
+       href="/market"
+       isSelected={isSelected('/market')}
+       >
+				Market
+			</NavLink>
+    
+      <DropdownMenu 
+      title="Farm Area"
+      hasAction={true}
+      options={farmer_links}
+      isSelected={isDropdownSelected('/farmer')}
+      />
+      
+		</>
+	);
+
+	const guestLinks = (isMobile: boolean) => (
+		<>
+			<NavLink
+				isSelected={isSelected('/dashboard')}
+				isMobile={isMobile}
+				href='/dashboard'
+			>
+				Dashboard
+			</NavLink>
+			<NavLink isMobile={isMobile}
+       href="/market"
+       isSelected={isSelected('/market')}
+       >
+				Market
+			</NavLink>
+      
+		</>
+	);
   return (
     <Disclosure as="nav" className="bg-gray-100">
       {({ open }) => (
@@ -63,21 +136,12 @@ function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-green-700 text-white"
-                            : "text-grey-900 dark:text-black hover:bg-green-500 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    {/* nav links */}
+                    {isAuthenticated
+								? authLinks(true)
+								: guestLinks(true)}
+
+					{/* end of nav links */}
                   </div>
                 </div>
               </div>
@@ -169,28 +233,19 @@ function Navbar() {
                 <Link href="/auth/login" className="bg-green-600 hover:bg-green-700 text-white rounded-md px-3 py-2 text-sm font-medium">
                 Login
               </Link>
+              
               )}
             </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-green-700 text-white"
-                      : "text-green-700 hover:bg-green-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
+           
+
+{isAuthenticated
+								? authLinks(true)
+								: guestLinks(true)}
+              
             </div>
           </Disclosure.Panel>
         </>

@@ -1,7 +1,7 @@
 import '@/app/styles/globals.css'
 import { Inter } from 'next/font/google'
 import Provider from '@/redux/provider'
-import { Navbar, Footer } from '../components'
+import { Navbar, Footer, RequireAuth } from '../components'
 import { Setup } from '../components/utils'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,13 +21,14 @@ export default function RootLayout({
       <body className={inter.className}>
        
           <Provider>
+          <RequireAuth>
           <Setup />
           <Navbar />
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{children}</div>
       
         <Footer />
+        </RequireAuth>
           </Provider>
-        
         </body>
     </html>
   )

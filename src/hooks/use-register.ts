@@ -14,7 +14,7 @@ const [register, {isLoading}] = useRegisterMutation()
     last_name: Yup.string().required('Last name is required'),
     phone_number: Yup.string().required('Phone number is required'),
     alternative_contact: Yup.string().required('Alternative contact is required'),
-    gender: Yup.object().required().nullable().label("Gender is required"),
+    gender: Yup.string().required().label("Gender is required"),
     username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
    re_password: Yup.string().required('Confirm password is required').oneOf([Yup.ref('password')], 'Passwords must match')
