@@ -114,7 +114,7 @@ const HomePage = () => {
           <Search />
         </div>
       </nav>
-      <main className='prose'>
+      <main >
         <section id="hero" className="py-20">
           <div className="container mx-auto text-center">
             <h1 className="text-5xl text-gray-800 font-bold mb-6">Welcome to Farm Wise</h1>
