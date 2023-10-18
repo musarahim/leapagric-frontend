@@ -52,9 +52,52 @@ type Farmer = {
       level_of_education: string,
       occupation: string,
       experience: number,
-      farmer_group : string,
+      farmer_group ?: string,
       production_scale: string,
       general_remarks: string,
-      status: string,
-      approved_date: string
+      district:string,
+      status?: string,
+      approved_date?: string
+}
+
+type EducationLevel = {
+    id?: number,
+    name: string
+}
+
+type FarmerGroup = {
+    id?: number,
+    name : string,
+    description?: string,
+    address?: string,
+    contact_person_email?: string,
+    district?: string,
+    leaders?: string,
+    sectors?: string,
+}
+
+type Sector ={
+    id?: number,
+    name: string
+}
+
+type Region ={
+    id?: number,
+    name: string
+}
+type District ={
+    id?: number,
+    name: string,
+    region?:string
+}
+
+
+
+type Crop = {
+
+    id: number,
+    name: string,
+    image?: string,
+    description?: string
+
 }

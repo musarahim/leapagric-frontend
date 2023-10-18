@@ -1,7 +1,9 @@
 export {default as Navbar} from '../components/common/Navbar'
 export {default as Footer} from '../components/common/Footer'
 export {default as InputField} from '../components/forms/InputField'
+export {default as TextAreaField} from '../components/forms/TextAreaField'
 export {default as SelectField} from '../components/forms/SelectField'
+export {default as MultiSelect} from '../components/forms/MultiSelect'
 export {default as PhoneField} from '../components/forms/PhoneInputField'
 export {default as Spinner} from './common/Spinner';
 export {default as SubmitButton} from './forms/SubmitButton';

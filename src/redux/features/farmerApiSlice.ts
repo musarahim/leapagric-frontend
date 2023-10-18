@@ -1,4 +1,4 @@
-import { Farmer } from "../../../type";
+import { Farmer , EducationLevel, FarmerGroup} from "../../../type";
 import { apiSlice } from "../services/apiSlice";
 
 const farmerApiSlice = apiSlice.injectEndpoints({
@@ -6,32 +6,35 @@ const farmerApiSlice = apiSlice.injectEndpoints({
     retrieveFarmer: builder.query<Farmer, void>({
       query: () => "/farmers/farmer-profile/",
     }),
-
     
-    farmeRegister: builder.mutation({
+    getEducationLevel: builder.query<EducationLevel[], void>({
+      query : () => "/common/education-level/",
+    }),
+
+    getFarmerGroup: builder.query<FarmerGroup[], void>({
+      query: () => "/farmers/groups/",
+    }),
+    
+    farmerRegister: builder.mutation({
       query: ({
-        email,
-        first_name,
-        last_name,
-        phone_number,
-        alternative_contact,
-        gender,
-        username,
-        password,
-        re_password,
+        date_of_birth,
+        level_of_education,
+        occupation,
+        experience,
+        farmer_group,
+        general_remarks,
+        production_scale,
       }) => ({
-        url: "/users/",
+        url: "/farmers/farmer-profile/",
         method: "POST",
         body: {
-          email,
-          first_name,
-          last_name,
-          phone_number,
-          alternative_contact,
-          gender,
-          username,
-          password,
-          re_password,
+          date_of_birth,
+          level_of_education,
+          occupation,
+          experience,
+          farmer_group,
+          general_remarks,
+          production_scale,
         },
       }),
     }),
@@ -43,6 +46,8 @@ const farmerApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useRetrieveFarmerQuery,
-    useFarmeRegisterMutation,
+    useFarmerRegisterMutation,
+    useGetEducationLevelQuery,
+    useGetFarmerGroupQuery,
 
 } = farmerApiSlice;

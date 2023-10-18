@@ -19,7 +19,7 @@ interface Props {
   Id?: string;
   value?: string;
   children?: React.ReactNode;
-  options?: Option[];
+  options?: any;
 }
 
 
@@ -50,24 +50,26 @@ function SelectField({
       <div className="mt-2">
         <select
           id={props.Id}
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        
+          className="block  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           {...field}
           {...props}
         >
-            {props.options?.map((option) => (
-              
+            {props.options?.map((option:Option) => (
+
                  <option key={option.id} value={option.id}>
                 {option.name}
                 </option>
-              
-               
+
+
             ))}
         </select>
       </div>
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <div className="text-sm text-red-600">{meta.error}</div>
       ) : null}
     </div>
   );
 }
 export default SelectField
+
