@@ -1,23 +1,14 @@
+"use client"
 import React from 'react'
 import Link from 'next/link';
-
-interface Farmer {
-  name: string;
-  location: string;
-  crops: string;
-  bio: string;
-  profileImage: string;
-}
+import { useRetrieveFarmerQuery } from '@/redux/features/farmerApiSlice'
+import { Farmer } from '../../../type';
 
 
 const FarmersPage = async() => {
-  const farmer: Farmer = {
-    name: 'John Doe',
-    location: 'Farmington, USA',
-    crops: 'Wheat, Corn, Soybeans',
-    bio: 'I am a passionate farmer with over 10 years of experience...',
-    profileImage: '/path-to-profile-image.jpg',
-  };
+	const {data:farmer, isLoading, isFetching} = useRetrieveFarmerQuery();
+	console.log(farmer, 'This is the damn farmer')
+ 
    
   return (
     <>
@@ -28,6 +19,7 @@ const FarmersPage = async() => {
 					</h1>
 				</div>
 			</header>
+
       <div className='text-center'>
 				
 				<h1 className='mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
