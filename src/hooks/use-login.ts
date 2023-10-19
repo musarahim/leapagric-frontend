@@ -28,8 +28,9 @@ function Uselogin() {
   
       login(values).unwrap().then((res) => {
         dispatch(setAuth())
-        toast.success("Login successfully")
         router.push("/dashboard")
+        toast.success("Login successfully")
+        
       }
       ).catch((err) => {
         toast.error(err.data.detail)

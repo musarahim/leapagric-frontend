@@ -17,7 +17,7 @@ const {data:districts} = useGetDistrictsQuery()
     level_of_education: Yup.string().required('Level of Education is required'),
     occupation: Yup.string().required('Occupation is required'),
     experience: Yup.number().required('Experience is required'),
-    farmer_group: Yup.string().nullable(),
+    farmer_group: Yup.array().nullable(),
     general_remarks: Yup.string().nullable(),
     production_scale: Yup.string().required('Production Scale is required'),
    
@@ -30,7 +30,7 @@ const {data:districts} = useGetDistrictsQuery()
     level_of_education:'',
     occupation:'',
     experience:'',
-    farmer_group:'',
+    farmer_group:[],
     general_remarks:'',
     production_scale:'',
   }
@@ -41,9 +41,10 @@ const {data:districts} = useGetDistrictsQuery()
    // event.preventDefault();
 
    farmeRegister(values).unwrap().then((res) => {
-      console.log(res);
-      toast.success("Account created successfully, please check email to verify account")
-      router.push("/auth/login")
+  
+      router.push("/farmer")
+      toast.success("Farmer Account created successfully, please go ahead and add your farm/s")
+     
     }
     ).catch((err) => {
       console.log(err);

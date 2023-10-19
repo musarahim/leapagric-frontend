@@ -52,7 +52,7 @@ type Farmer = {
       level_of_education: string,
       occupation: string,
       experience: number,
-      farmer_group ?: string,
+      farmer_group ?: Array<FarmerGroup>,
       production_scale: string,
       general_remarks: string,
       district:string,
@@ -66,7 +66,7 @@ type EducationLevel = {
 }
 
 type FarmerGroup = {
-    id?: number,
+    id: number,
     name : string,
     description?: string,
     address?: string,

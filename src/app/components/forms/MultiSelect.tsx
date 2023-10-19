@@ -3,6 +3,7 @@ import React from 'react'
 import Select from 'react-select'
 import { useField } from 'formik'
 import Link from 'next/link';
+import { ErrorMessage, useFormikContext } from "formik";
 
 
 interface Props {
@@ -17,7 +18,8 @@ interface Props {
   Id?: string;
   value?: string;
   children?: React.ReactNode;
-  options?: any;
+  options: any;
+  isMulti?:boolean
 }
 
 
@@ -25,6 +27,21 @@ function MultiSelect({
     ...props
 }: Props) {
     const [field, meta, helpers] = useField(props);
+    const { setFieldValue } = useFormikContext();
+    const handleOnchange = (selectedOption:any) => {
+      console.log(props.isMulti,'logging is multiple value')
+      if (props.isMulti===true){
+        let values:Array<any> = []
+        selectedOption.forEach(function (value:any) {
+          values.push(value.value)
+        }); 
+  
+        setFieldValue(props.name, values);
+      }else{
+        setFieldValue(props.name, selectedOption ? selectedOption.value : null);
+       
+      }
+    }
   return (
     <div>
     <div className="flex justify-between align-center">
@@ -47,11 +64,13 @@ function MultiSelect({
   </div>
   <div className="mt-2">
   <Select
-    isMulti
-    name="colors"
+    isMulti={props.isMulti}
+    onChange={handleOnchange}
+    name={props.name}
     options={props.options}
     className="basic-multi-select w-full block"
     classNamePrefix="select"
+
     />
     </div>
      {meta.touched && meta.error ? (

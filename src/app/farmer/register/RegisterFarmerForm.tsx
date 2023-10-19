@@ -2,6 +2,7 @@
 import React from 'react'
 import { Form, InputField, SubmitButton, SelectField, TextAreaField,MultiSelect } from '@/app/components'
 import {useFarmerRegistration} from '@/hooks'
+import { FarmerGroup } from '../../../../type'
 
 const productionScale =[
   {id:'Subsistence Production', name:'Subsistence Production'},
@@ -9,9 +10,12 @@ const productionScale =[
   {id:'Large Commercial Production', name:'Large Commercial Production'}
 ]
 
+
 function RegisterFarmerForm() {
   const { onSubmit, intialValues, isLoading,validationSchema, educationLevel,farmerGroup,districts } = useFarmerRegistration();
-  
+  const farmerGroups = farmerGroup?.map((group:FarmerGroup) => {
+    return {value:group.id, label:group.name}
+  })
   return (
     <Form initialValues={intialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
          <div className="space-y-12">
@@ -37,8 +41,8 @@ function RegisterFarmerForm() {
 
           
            <div className="sm:col-span-2 sm:col-start-1">
-            {/* <SelectField name='farmer_group' label='Farmer Group' options={farmerGroup}/> */}
-            <MultiSelect name='farmer_group' label='Farmer Group' options={farmerGroup}/>
+         
+            <MultiSelect name='farmer_group' label='Farmer Group' options={farmerGroups} isMulti={true}/>
            </div>
 
            <div className="sm:col-span-2">
