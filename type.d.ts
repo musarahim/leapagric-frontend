@@ -48,6 +48,7 @@ type Gender={
 }
 
 type Farmer = {
+      user:number,
       date_of_birth:string,
       level_of_education: string,
       occupation: string,
