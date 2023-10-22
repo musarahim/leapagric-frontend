@@ -8,10 +8,9 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { logout as setLogOut } from "@/redux/features/authSlice";
-import { useLogoutMutation } from "@/redux/features/authApiSlice";
+import { useLogoutMutation, useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { NavLink,DropdownMenu } from '@/app/components';
 import {
-  ArrowPathIcon,
   ChartPieIcon,
   CursorArrowRaysIcon,
   FingerPrintIcon,
@@ -30,11 +29,17 @@ const navigation = [
 const farmer_links = [
     { name: 'My Dashboard', description: 'View A Summery of your farm from here', href: '/farmer/dashboard', icon: ChartPieIcon },
     { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: CursorArrowRaysIcon },
-    { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: FingerPrintIcon },
-    { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-    { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+    { name: 'Production Protocals', description: "Interested in farming, see available production protocals", href: '#', icon: FingerPrintIcon },
+    { name: 'My Farms', description: 'Manage your farm/s and enterprises from here', href: '#', icon: SquaresPlusIcon },
+    
   ]
-
+  const seller_links = [
+    { name: 'My Dashboard', description: 'View A Summery of your farm from here', href: '/farmer/dashboard', icon: ChartPieIcon },
+    { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: CursorArrowRaysIcon },
+    { name: 'Production Protocals', description: "Interested in farming, see available production protocals", href: '#', icon: FingerPrintIcon },
+    { name: 'My Farms', description: 'Manage your farm/s and enterprises from here', href: '#', icon: SquaresPlusIcon },
+    
+  ]
   const callsToAction = [
 
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -52,7 +57,7 @@ function Navbar() {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
   const [logout] = useLogoutMutation();
   const router = useRouter();
-
+  const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
   const handleLogout = () => {
     logout(undefined).unwrap().then((res) => {
       dispatch(setLogOut());
@@ -77,12 +82,24 @@ function Navbar() {
        >
 				Market
 			</NavLink>
+      <NavLink isMobile={isMobile}
+       href="/service-providers"
+       isSelected={isSelected('/service-providers')}
+       >
+				Service Providers
+			</NavLink>
     
       <DropdownMenu 
       title="Farm Area"
       hasAction={true}
       options={farmer_links}
       isSelected={isDropdownSelected('/farmer')}
+      />
+      <DropdownMenu 
+      title="Service Provider Accounts"
+      hasAction={true}
+      options={farmer_links}
+      isSelected={isDropdownSelected('/service-providers')}
       />
       
 		</>
@@ -102,6 +119,12 @@ function Navbar() {
        isSelected={isSelected('/market')}
        >
 				Market
+			</NavLink>
+      <NavLink isMobile={isMobile}
+       href="/service-providers"
+       isSelected={isSelected('/service-providers')}
+       >
+				Service Providers
 			</NavLink>
       
 		</>
@@ -167,7 +190,7 @@ function Navbar() {
                         width={80}
                         height={80}
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={user?.avatar}
                         alt=""
                       />
                     </Menu.Button>

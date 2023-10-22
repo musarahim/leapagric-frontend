@@ -5,6 +5,7 @@ import { List, Spinner } from '@/app/components';
 
 export default function Page() {
 	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
+	console.log(user)
 
 	const config = [
 		{
