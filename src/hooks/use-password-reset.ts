@@ -1,7 +1,7 @@
 
 import {useRouter} from "next/navigation"
 import {toast} from "react-toastify"
-import { UserEmail } from "../../type";
+import { UserEmail } from "../../types";
 import { useResetPasswordMutation } from "@/redux/features/authApiSlice";
 import * as Yup from 'yup';
 

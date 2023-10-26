@@ -3,9 +3,11 @@
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { List, Spinner } from '@/app/components';
 
+export const revalidate = 86400; // 24 hours
+
 export default function Page() {
 	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
-	console.log(user)
+	
 
 	const config = [
 		{
@@ -39,9 +41,10 @@ export default function Page() {
 					</h1>
 				</div>
 			</header>
-			<main className='mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8'>
+			<div className='mt-6 border-t border-gray-100'>
+			
 				<List config={config} />
-			</main>
+			</div>
 		</>
 	);
 }

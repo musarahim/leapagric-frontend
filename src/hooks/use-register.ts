@@ -2,7 +2,7 @@ import { useRegisterMutation } from "@/redux/features/authApiSlice"
 import {useRouter} from "next/navigation"
 import {toast} from "react-toastify"
 import * as Yup from 'yup';
-import { User } from "../../type"
+import { User } from "../../types"
 
 function useRegistration() {
 const [register, {isLoading}] = useRegisterMutation()

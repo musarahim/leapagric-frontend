@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 // pages/index.js
 import { useState } from 'react';
-import { Chat } from './components/Chat';
 import Search from './components/Search';
 
 
@@ -181,7 +180,7 @@ const HomePage = () => {
               <div className="md:w-1/2 mx-2">
                
                 <p className="text-xl text-gray-800 mb-4">Get the help you were looking for from here:</p>
-               <Chat />
+              {/* add content that talks about the chat */}
               </div>
               <div className="md:w-1/2">
                 <Image src="/chat_logo.png" height={200} width={600} alt="Farmers Application - About" className="rounded-lg" />

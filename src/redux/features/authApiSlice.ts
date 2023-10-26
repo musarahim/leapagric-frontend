@@ -1,4 +1,3 @@
-import { CreateUserResponse, SocialAuthArgs, User } from "../../../type";
 import { apiSlice } from "../services/apiSlice";
 
 const authApiSlice = apiSlice.injectEndpoints({

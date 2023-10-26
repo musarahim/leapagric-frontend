@@ -1,14 +1,61 @@
 "use client";
 import React from 'react'
 import Link from 'next/link';
-import { Header, Spinner } from '../components';
+import { List, Spinner, Breadcrump } from '../components';
 import { useRetrieveFarmerQuery } from '@/redux/features/farmerApiSlice'
-import { Farmer } from '../../../type';
-import { HiLink } from "react-icons/hi";
+import {useRetrieveUserQuery} from '@/redux/features/authApiSlice'
+
+
 
 function FarmersPage() {
-	const {data:farmer, isLoading, isFetching} =  useRetrieveFarmerQuery();
-	const farmerdata =farmer?.results[0]
+  const { data: user } = useRetrieveUserQuery();
+  const id = user.id
+	const {data:farmer, isLoading, isFetching} =  useRetrieveFarmerQuery(id,{
+    refetchOnMountOrArgChange: false,
+  });
+	const config = [
+		{
+			label: 'First Name',
+			value: farmer?.farmer_names,
+		},
+	
+		{
+			label: 'Date of Birth',
+			value: farmer?.date_of_birth,
+		},
+    {
+      label:'Education Level',
+      value: farmer?.level_of_education
+    },
+    {
+      label:'Occupation',
+      value: farmer?.occupation
+    },
+    {
+      label:'Farming Sectors',
+      value: farmer?.sectors?.map(item => item.name).join()
+    },
+    {
+      label:'Production Scale',
+      value: farmer?.production_scale
+    },
+    {
+      label:'Farmer Group',
+      value: farmer?.farmer_group?.map(item => item.name).join()
+    },
+    {
+      label:'Location',
+      value: farmer?.district
+    },
+    {
+      label:'General Remarks',
+      value: farmer?.general_remarks
+    },
+    {
+      label:'Account Status',
+      value: farmer?.status
+    },
+	];
 	
 	if (isLoading || isFetching) {
 		return (
@@ -19,70 +66,14 @@ function FarmersPage() {
 	}	
   return (
 	<main>
-		<Header title="My Farmer Profile" />
+		{/* <Header title="My Farmer Profile" /> */}
+    <Breadcrump title1='Home' link1='/dashboard' title2='Farmer Dashboard' link2='/farmer/dashboard' title3='Farmer Profile' />
 		{farmer ?(
 		<div>
 		
       <div className="mt-6 border-t border-gray-100">
-        <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">Full name</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{farmerdata.farmer_names}</dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">District</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Backend Developer</dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">Email address</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">Salary expectation</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">$120,000</dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">General Remarks</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-           {farmerdata.general_remarks}
-            </dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">Attachments</dt>
-            <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <HiLink className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">resume_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">2.4mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <HiLink className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">coverletter_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">4.5mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </dd>
-          </div>
-        </dl>
+      <List config={config} />
+    
       </div>
 		</div>
 		):

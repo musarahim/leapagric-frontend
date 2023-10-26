@@ -1,18 +1,11 @@
-import { type } from "os";
 
-type farmer = {
-    name: string;
-    age: number;
-    address: string;
-    phone: string;
-
-    };
 type post = {
     title: string;
     content: string;
 }
 
 type User = {
+    id?:number
     email:string,
     avatar:string,
     first_name: string,
@@ -48,12 +41,16 @@ type Gender={
     name: string
 }
 
+
 type Farmer = {
       user:number,
       date_of_birth:string,
       level_of_education: string,
       occupation: string,
       experience: number,
+      district:string,
+      sectors?:Array<Sector>,
+      farmer_names?:string,
       farmer_group ?: Array<FarmerGroup>,
       production_scale: string,
       general_remarks: string,
@@ -102,4 +99,34 @@ type Crop = {
     image?: string,
     description?: string
 
+}
+
+type Product = {
+    id?: number,
+    seller?: number,
+    name: string,
+    description?: string,
+    category: string,
+    price: string,
+    unit_measurement: string,
+    unit: number,
+    image: string,
+    image_2?: string,
+    image_3?: string,
+    image_4?: string,
+    available: string,
+    seller_name?: string,
+    contact_phone?: string,
+    contact_email?: string,
+    seller_location?: string,
+    seller_image?: string,
+    specification?: string,
+    
+    }
+
+type ProductList = {
+    count: number,
+    next: string,
+    previous: string,
+    results: Array<Product>
 }

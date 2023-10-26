@@ -2,7 +2,7 @@
 import React from 'react'
 import { Form, InputField, SubmitButton, SelectField, TextAreaField,MultiSelect } from '@/app/components'
 import {useFarmerRegistration} from '@/hooks'
-import { FarmerGroup } from '../../../../type'
+import { FarmerGroup } from '../../../../types'
 
 const productionScale =[
   {id:'Subsistence Production', name:'Subsistence Production'},

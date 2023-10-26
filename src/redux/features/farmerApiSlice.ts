@@ -1,10 +1,10 @@
-import { Farmer , EducationLevel, FarmerGroup} from "../../../type";
+import { Farmer , EducationLevel, FarmerGroup} from "../../../types";
 import { apiSlice } from "../services/apiSlice";
 
 const farmerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    retrieveFarmer: builder.query<Farmer, Farmer>({
-      query: ({user}) => `/farmers/farmer-profile/${user}/`,
+    retrieveFarmer: builder.query<Farmer, number>({
+      query: (id) => `/farmers/farmer-profile/${id}/`,
     }),
     
     getEducationLevel: builder.query<EducationLevel[], void>({

@@ -14,7 +14,7 @@ import {
   ChartPieIcon,
   CursorArrowRaysIcon,
   FingerPrintIcon,
-  SquaresPlusIcon,
+  SquaresPlusIcon,UserIcon,	CalendarDaysIcon,	BookOpenIcon,	BuildingOfficeIcon
 } from '@heroicons/react/24/outline'
 import {  PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
@@ -28,9 +28,9 @@ const navigation = [
 ];
 const farmer_links = [
     { name: 'My Dashboard', description: 'View A Summery of your farm from here', href: '/farmer/dashboard', icon: ChartPieIcon },
-    { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: CursorArrowRaysIcon },
-    { name: 'Production Protocals', description: "Interested in farming, see available production protocals", href: '#', icon: FingerPrintIcon },
-    { name: 'My Farms', description: 'Manage your farm/s and enterprises from here', href: '#', icon: SquaresPlusIcon },
+    { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: UserIcon },
+    { name: 'Production Protocals', description: "Interested in farming, see available production protocals", href: '/farmer/production-protocals', icon: 		BookOpenIcon },
+    { name: 'My Farms', description: 'Manage your farm/s and enterprises from here', href: '#', icon: 	BuildingOfficeIcon },
     
   ]
   const seller_links = [
