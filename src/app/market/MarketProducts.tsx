@@ -1,7 +1,6 @@
 "use client"
-import React from 'react'
 import { useGetProductsQuery } from '@/redux/features/productApiSlice'
-import { Product, Spinner } from '../components'
+import { Product, Spinner } from '../../components'
 
 function MarketProducts() {
     const { data:productList, error, isLoading, isFetching } = useGetProductsQuery()

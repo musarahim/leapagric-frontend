@@ -1,7 +1,6 @@
 "use client"
-import React from 'react'
-import { Form, InputField, SubmitButton } from '@/app/components'
-import { usePasswordReset } from '@/hooks'
+import { Form, InputField, SubmitButton } from '@/components';
+import { usePasswordReset } from '@/hooks';
 
 function PasswordResetForm() {
     const { onSubmit, intialValues, isLoading,validationSchema } = usePasswordReset();

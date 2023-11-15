@@ -1,9 +1,9 @@
 import "@/app/styles/globals.css";
-import { Inter } from "next/font/google";
-import { Navbar, Footer } from "@/app/components";
-import { Metadata } from "next";
+import { Footer, Navbar } from "@/components";
+import { Setup } from "@/components/utils";
 import Provider from "@/redux/provider";
-import {Setup} from  "@/app/components/utils"
+import { Metadata } from "next";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 

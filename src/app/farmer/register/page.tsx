@@ -1,5 +1,4 @@
-import React from 'react'
-import {Header} from '@/app/components'
+import { Header } from '@/components'
 import RegisterFarmerForm from './RegisterFarmerForm'
 
 const RegisterFarmer = () => {

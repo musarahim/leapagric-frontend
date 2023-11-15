@@ -1,9 +1,8 @@
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { H2Text, SocialButtons } from "@/components";
 import { Metadata } from "next";
-import { H2Text, SocialButtons } from "@/app/components";
+import Image from "next/image";
+import Link from "next/link";
 import LoginForm from "./LoginForm";
 
 export const metadata: Metadata = {

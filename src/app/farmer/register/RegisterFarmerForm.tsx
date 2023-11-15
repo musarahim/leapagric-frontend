@@ -1,7 +1,6 @@
 "use client"
-import React from 'react'
-import { Form, InputField, SubmitButton, SelectField, TextAreaField,MultiSelect } from '@/app/components'
-import {useFarmerRegistration} from '@/hooks'
+import { Form, InputField, MultiSelect, SelectField, SubmitButton, TextAreaField } from '@/components'
+import { useFarmerRegistration } from '@/hooks'
 import { FarmerGroup } from '../../../../types'
 
 const productionScale =[

@@ -1,10 +1,10 @@
 "use client"; 
-import Image from 'next/image'
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 // pages/index.js
 import { useState } from 'react';
-import Search from './components/Search';
+import Search from '../components/Search';
 
 
 const HomePage = () => {

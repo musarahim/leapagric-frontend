@@ -1,8 +1,8 @@
+import { SocialButtons } from "@/components";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import RegisterForm from "./RegisterForm";
-import { SocialButtons } from "@/app/components";
 
 export const metadata: Metadata = {
   title: "Farm Wise | Register",

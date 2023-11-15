@@ -1,7 +1,6 @@
 "use client";
-import React from 'react'
-import useLogin from '@/hooks/use-login'
-import { Form, InputField, SubmitButton } from '@/app/components'
+import { Form, InputField, SubmitButton } from '@/components';
+import useLogin from '@/hooks/use-login';
 
 function LoginForm() {
   const { onSubmit, intialValues, isLoading,validationSchema } = useLogin();

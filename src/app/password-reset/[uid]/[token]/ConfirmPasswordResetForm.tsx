@@ -1,7 +1,6 @@
 "use client"
-import React from 'react'
-import { Form, InputField, SubmitButton } from '@/app/components'
-import { usePasswordResetConfirm } from '@/hooks'
+import { Form, InputField, SubmitButton } from '@/components';
+import { usePasswordResetConfirm } from '@/hooks';
 
 interface Props {
     uid:string;

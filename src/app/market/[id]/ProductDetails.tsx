@@ -1,9 +1,8 @@
 "use client"
-import React from 'react'
-import Image from 'next/image'
-import { Breadcrump, Spinner } from '@/app/components'
+import { Breadcrump, Spinner } from '@/components'
 import { useRetrieveProductQuery } from '@/redux/features/productApiSlice'
 import { StarIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 interface props {
     id:number,

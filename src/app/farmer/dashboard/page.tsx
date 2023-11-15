@@ -1,6 +1,5 @@
-import React from 'react'
-import {CardOne} from '@/app/components/dashboard'
-import {Breadcrump} from '@/app/components'
+import { Breadcrump } from '@/components'
+import { CardOne } from '@/components/dashboard'
 
 
 

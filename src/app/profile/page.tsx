@@ -1,7 +1,7 @@
 'use client';
 
+import { List, Spinner } from '@/components';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-import { List, Spinner } from '@/app/components';
 
 export const revalidate = 86400; // 24 hours
 

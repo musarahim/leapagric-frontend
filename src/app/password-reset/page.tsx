@@ -1,7 +1,6 @@
-import React from 'react'
+import { H2Text } from "@/components";
 import { Metadata } from "next";
 import Image from "next/image";
-import { H2Text } from "@/app/components";
 import PasswordResetForm from "./PasswordResetForm";
 export const metadata:Metadata = {
   title: "Farm Wise | Reset Password",

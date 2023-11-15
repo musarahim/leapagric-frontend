@@ -1,9 +1,8 @@
 "use client";
-import React from 'react'
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { useRetrieveFarmerQuery } from '@/redux/features/farmerApiSlice';
 import Link from 'next/link';
-import { List, Spinner, Breadcrump } from '../components';
-import { useRetrieveFarmerQuery } from '@/redux/features/farmerApiSlice'
-import {useRetrieveUserQuery} from '@/redux/features/authApiSlice'
+import { Breadcrump, List, Spinner } from '../../components';
 
 
 

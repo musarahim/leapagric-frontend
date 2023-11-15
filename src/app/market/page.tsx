@@ -1,7 +1,6 @@
-import React from 'react'
-import { Metadata } from 'next'
-import { Breadcrump } from '../components'
-import MarketProducts from './MarketProducts'
+import { Metadata } from 'next';
+import { Breadcrump } from '../../components';
+import MarketProducts from './MarketProducts';
 
 export const metadata: Metadata = {
   title: "Farm Wise | Products",

@@ -1,7 +1,6 @@
 'use client'
-import React from 'react'
-import { useRegistration } from '@/hooks'
-import { Form, InputField, SubmitButton,SelectField,PhoneField } from '@/app/components'
+import { Form, InputField, PhoneField, SelectField, SubmitButton } from '@/components';
+import { useRegistration } from '@/hooks';
 
 function RegisterForm() {
     const { onSubmit, intialValues, isLoading,validationSchema,genderOptions } = useRegistration();

@@ -1,22 +1,20 @@
 "use client";
-import React, { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from 'next/navigation';
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { logout as setLogOut } from "@/redux/features/authSlice";
+import { DropdownMenu, NavLink } from '@/components';
 import { useLogoutMutation, useRetrieveUserQuery } from "@/redux/features/authApiSlice";
-import { NavLink,DropdownMenu } from '@/app/components';
+import { logout as setLogOut } from "@/redux/features/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import {
-  ChartPieIcon,
+  Bars3Icon, BellIcon, BookOpenIcon, BuildingOfficeIcon, ChartPieIcon,
   CursorArrowRaysIcon,
   FingerPrintIcon,
-  SquaresPlusIcon,UserIcon,	CalendarDaysIcon,	BookOpenIcon,	BuildingOfficeIcon
-} from '@heroicons/react/24/outline'
-import {  PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+  SquaresPlusIcon, UserIcon, XMarkIcon
+} from "@heroicons/react/24/outline";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { Fragment } from "react";
 
 
 const navigation = [

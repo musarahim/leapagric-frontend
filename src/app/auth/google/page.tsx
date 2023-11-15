@@ -1,8 +1,8 @@
 'use client';
 
-import { useSocialAuthenticateMutation } from '@/redux/features/authApiSlice';
+import { Spinner } from '@/components';
 import { useSocialAuth } from '@/hooks';
-import { Spinner } from '@/app/components/';
+import { useSocialAuthenticateMutation } from '@/redux/features/authApiSlice';
 
 export default function Page() {
 	const [googleAuthenticate] = useSocialAuthenticateMutation();

@@ -1,8 +1,8 @@
 'use client';
+import { Spinner } from "@/components";
 import { useAppSelector } from "@/redux/hooks";
-import { Spinner } from "@/app/components";
-import {redirect} from "next/navigation"
-import {toast} from	"react-toastify"
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface Props {
 	children: React.ReactNode;
