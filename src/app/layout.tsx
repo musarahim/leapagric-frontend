@@ -1,5 +1,6 @@
 import '@/app/styles/globals.css';
 import { Chat } from '@/components';
+import Provider from '@/redux/provider'
 import { Metadata } from "next";
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] })
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Provider>
         <Chat />
         {children}
+        </Provider>
         </body>
     </html>
   )

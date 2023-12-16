@@ -1,7 +1,6 @@
 
 import {useRouter} from "next/navigation"
 import {toast} from "react-toastify"
-import { LoginUser } from "../../types";
 import { useLoginMutation } from "@/redux/features/authApiSlice";
 import { setAuth } from "@/redux/features/authSlice";
 import { useAppDispatch } from "@/redux/hooks";

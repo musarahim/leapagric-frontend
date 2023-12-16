@@ -1,4 +1,3 @@
-import { District , Sector, Region,Crop } from "../../../types";
 import { apiSlice } from "../services/apiSlice";
 
 const commonApiSlice = apiSlice.injectEndpoints({

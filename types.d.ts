@@ -130,3 +130,11 @@ type ProductList = {
     previous: string,
     results: Array<Product>
 }
+type chat = {
+    id?: number,
+    sender: number,
+    receiver?: number,
+    message: string,
+    created_at?: string,
+    updated_at?: string
+}

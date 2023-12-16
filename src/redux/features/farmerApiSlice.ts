@@ -1,4 +1,3 @@
-import { Farmer , EducationLevel, FarmerGroup} from "../../../types";
 import { apiSlice } from "../services/apiSlice";
 
 const farmerApiSlice = apiSlice.injectEndpoints({

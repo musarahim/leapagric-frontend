@@ -6,7 +6,7 @@ function ChatHeader() {
             <p className='text-xs'>Chat with</p>
             <div className='flex items-center gap-1.5'>
                 <p className='w-2 h-2 rounded-full bg-green-500' />
-                <p className="font-medium"> Farm Wise </p>
+                <p className="font-medium"> Farm Wise Support</p>
             </div>
         </div>
       
