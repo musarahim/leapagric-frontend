@@ -138,3 +138,27 @@ type chat = {
     created_at?: string,
     updated_at?: string
 }
+
+type ServiceCategory = {
+    id?: number,
+    name: string,
+}
+
+type ServiceProvider = {
+    id?: number,
+    user: string
+    enterprise_name: string,
+    business_number: string,
+    email?: string,
+    website?: string,
+    service_logo: string,
+    services_offered: Array<ServiceCategory>,
+    target_audience: string,
+    business_model: string,
+    year_established: string,
+    number_of_employees: number,
+    certifications: string,
+    location: string,
+    address?: string,
+    general_remarks?: string,
+}
