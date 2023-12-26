@@ -162,3 +162,34 @@ type ServiceProvider = {
     address?: string,
     general_remarks?: string,
 }
+
+type Expertise = {
+    id?: number,
+    name: string,
+}
+
+type ExtensionWorker = {
+        user: number,
+        names?: string,
+        email?: string,
+        phone_number?: string,
+        alternative_contact?: string,
+        highest_education_level: string,
+        years_of_experience: number,
+        expertise_areas: Array<Expertise>,
+        district: string,
+        region: string,
+        county: string,
+        sub_county: string,
+        verified: string,
+        visibility: boolean,
+        general_remarks: string
+        avatar?: string,
+      }
+
+type ExtensionWorkerResponse = {
+    count: number,
+    next: string,
+    previous: string,
+    results: Array<ExtensionWorker>
+}
