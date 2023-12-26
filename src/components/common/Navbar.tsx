@@ -86,6 +86,12 @@ function Navbar() {
        >
 				Service Providers
 			</NavLink>
+      <NavLink isMobile={isMobile}
+       href="/extension-workers"
+       isSelected={isSelected('/extension-workers')}
+       >
+				Extension Workers
+			</NavLink>
     
       <DropdownMenu 
       title="Farm Area"
@@ -123,6 +129,12 @@ function Navbar() {
        isSelected={isSelected('/service-providers')}
        >
 				Service Providers
+			</NavLink>
+      <NavLink isMobile={isMobile}
+       href="/extension-workers"
+       isSelected={isSelected('/extension-workers')}
+       >
+				Extension Workers
 			</NavLink>
       
 		</>

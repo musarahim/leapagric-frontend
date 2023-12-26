@@ -1,7 +1,10 @@
-import { EnvelopeIcon, IdentificationIcon } from '@heroicons/react/20/solid'
+import { Metadata } from 'next'
 import ServiceProvider from '@/app/service-providers/ServiceProvider'
 
-
+export const metadata: Metadata = {
+  title: "Farm Wise | Service Providers",
+  description: "Get access to service providers from our market place",
+};
 
 function page() {
   return (

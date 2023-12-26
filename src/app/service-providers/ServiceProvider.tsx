@@ -1,5 +1,6 @@
 "use client"
 import { EnvelopeIcon, IdentificationIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
 import { useGetServiceProviderQuery } from "@/redux/features/serviceProviderAPISlice"
 import {  Spinner } from '../../components'
 
@@ -50,13 +51,13 @@ function ServiceProvider() {
                  </a>
                </div>
                <div className="-ml-px flex w-0 flex-1">
-                 <a
-                   href={`tel:${person.business_number}`}
+                 <Link
+                   href={`/service-providers/${person.id}`}
                    className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                  >
                    <IdentificationIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                    View Details
-                 </a>
+                 </Link>
                </div>
              </div>
            </div>
