@@ -1,8 +1,8 @@
 "use client"
+import { useGetServiceProviderQuery } from "@/redux/features/serviceProviderAPISlice"
 import { EnvelopeIcon, IdentificationIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
-import { useGetServiceProviderQuery } from "@/redux/features/serviceProviderAPISlice"
-import {  Spinner } from '../../components'
+import { Spinner } from '../../components'
 
 function ServiceProvider() {
     const { data: serviceProviderList, error, isLoading, isFetching } = useGetServiceProviderQuery()
@@ -12,6 +12,13 @@ function ServiceProvider() {
         return (
             <div className='flex justify-center my-8'>
                 <Spinner lg />
+            </div>
+        );
+    }
+    if (serviceProviderList?.length === 0) {
+        return (
+            <div className='flex justify-center my-8'>
+                <p className='text-gray-400'>No service providers found</p>
             </div>
         );
     }

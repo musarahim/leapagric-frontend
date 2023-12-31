@@ -1,21 +1,21 @@
 "use client"
-import { Fragment, useState } from 'react'
-import {  Spinner } from '@/components'
-import {  Listbox, Transition } from '@headlessui/react'
+import { Spinner } from '@/components'
+import { useRetrieveServiceProviderQuery } from '@/redux/features/serviceProviderAPISlice'
+import { Listbox, Transition } from '@headlessui/react'
 import {
-  CalendarDaysIcon,
   EnvelopeIcon,
-  CreditCardIcon,
   FaceFrownIcon,
   FaceSmileIcon,
   FireIcon,
+  GlobeAltIcon,
   HandThumbUpIcon,
   HeartIcon,
   PaperClipIcon,
+  PhoneIcon,
   UserCircleIcon,
-  XMarkIcon as XMarkIconMini,
+  XMarkIcon as XMarkIconMini
 } from '@heroicons/react/20/solid'
-import { useRetrieveServiceProviderQuery } from '@/redux/features/serviceProviderAPISlice'
+import { Fragment, useState } from 'react'
 
 
 
@@ -56,7 +56,9 @@ function ServiceProviderDetails({id}:props) {
             <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
               <dl className="flex flex-wrap pb-6">
                 <div className="flex-auto pl-6 pt-6">
-                  <dd className="mt-1 text-base font-semibold leading-6 text-gray-900">$10,560.00</dd>
+                  <dd className="mt-1 text-base font-semibold leading-6 text-gray-900">
+                    {serviceProvider?.enterprise_name}
+                  </dd>
                 </div>
               
                 <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
@@ -79,10 +81,21 @@ function ServiceProviderDetails({id}:props) {
                 </div>
                 <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
                   <dt className="flex-none">
-                    <span className="sr-only">Status</span>
-                    <CreditCardIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
+                    <span className="sr-only">Phone</span>
+                    <PhoneIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
                   </dt>
-                  <dd className="text-sm leading-6 text-gray-500">Paid with MasterCard</dd>
+                  <dd className="text-sm leading-6 text-gray-500">{serviceProvider?.business_number}</dd>
+                </div>
+                <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
+                  <dt className="flex-none">
+                    <span className="sr-only">web</span>
+                    <GlobeAltIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
+                  </dt>
+                  <dd className="text-sm leading-6 text-gray-500">
+                    <a href={serviceProvider?.website} target='_blank' className="ml-3 font-medium text-indigo-600 hover:text-indigo-500">
+                        {serviceProvider?.website}
+                        </a>
+                  </dd>
                 </div>
               </dl>
              
@@ -94,31 +107,84 @@ function ServiceProviderDetails({id}:props) {
             <h2 className="text-base font-semibold leading-9 text-gray-900">Service Provider</h2>
             <dl className="mt-6 grid grid-cols-1 text-sm leading-6 sm:grid-cols-2">
               <div className="sm:pr-4">
-                <dt className="inline font-semibold leading-9 text-gray-900">Name</dt>{' '}
+                <dt className="inline font-semibold leading-9 text-gray-900">Names</dt>{' '}
 
               </div>
               <div className="mt-2 sm:mt-0 sm:pl-4">
                 <dt className="inline text-gray-500">{serviceProvider?.user}</dt>
               </div>
               <div className="sm:pr-4">
-                <dt className="inline font-semibold leading-9 text-gray-900">Name</dt>{' '}
+                <dt className="inline font-semibold leading-9 text-gray-900">Location</dt>{' '}
 
               </div>
               <div className="mt-2 sm:mt-0 sm:pl-4">
-                <dt className="inline text-gray-500">Due on</dt>{' '}
-                <dd className="inline text-gray-700">
-                  <time dateTime="2023-31-01">January 31, 2023</time>
-                </dd>
+                <dt className="inline text-gray-500">{serviceProvider?.location}</dt>
               </div>
               <div className="sm:pr-4">
-                <dt className="inline font-semibold leading-9 text-gray-900">Name</dt>{' '}
+                <dt className="inline font-semibold leading-9 text-gray-900">Address</dt>{' '}
 
               </div>
               <div className="mt-2 sm:mt-0 sm:pl-4">
-                <dt className="inline text-gray-500">Due on</dt>{' '}
-                <dd className="inline text-gray-700">
-                  <time dateTime="2023-31-01">January 31, 2023</time>
-                </dd>
+                <dt className="inline text-gray-500">{serviceProvider?.address}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Target  Audience</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.target_audience}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Business Model</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.business_model}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Year of Establishment</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.year_established}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Number of Employees</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.number_of_employees}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Certifications</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.certifications}</dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">Service Categories</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">
+                  {serviceProvider?.services_offered.join(', ')}
+                  </dt>
+               
+              </div>
+              <div className="sm:pr-4">
+                <dt className="inline font-semibold leading-9 text-gray-900">General Remarks</dt>{' '}
+
+              </div>
+              <div className="mt-2 sm:mt-0 sm:pl-4">
+                <dt className="inline text-gray-500">{serviceProvider?.general_remarks}</dt>
+               
               </div>
          
             </dl>

@@ -1,9 +1,8 @@
 "use client"
-import React from 'react'
+import { useGetExtensionWorkersQuery } from "@/redux/features/extensionWorkersApiSlice"
 import { EnvelopeIcon, IdentificationIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
-import { useGetExtensionWorkersQuery } from "@/redux/features/extensionWorkersApiSlice"
-import {  Spinner } from '../../components'
+import { Spinner } from '../../components'
 
 function ExtensionWorkers() {
     const { data, error, isLoading, isFetching } = useGetExtensionWorkersQuery()
@@ -16,6 +15,14 @@ function ExtensionWorkers() {
             </div>
         );
     }
+
+    if(data?.results?.length === 0) {
+        return (
+            <div className='flex justify-center my-8'>
+                <p className='text-gray-400'>No extension workers found</p>
+            </div>
+        );
+    } 
 
   return (
     <div>
