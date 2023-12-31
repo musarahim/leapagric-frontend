@@ -17,13 +17,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
 
 
-const navigation = [
-  { name: "Dashboard", href: "/dashboard", current: true },
-  { name: "Markets", href: "/market", current: false },
-  { name: "Farm Calender", href: "#", current: false },
-  { name: "Extension Services", href: "#", current: false },
-  
-];
+
 const farmer_links = [
     { name: 'My Dashboard', description: 'View A Summery of your farm from here', href: '/farmer/dashboard', icon: ChartPieIcon },
     { name: 'Farmer Profile', description: 'Manage your farmer profile', href: '/farmer', icon: UserIcon },
@@ -196,13 +190,20 @@ function Navbar() {
                     <Menu.Button className="relative flex rounded-full bg-green-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <Image
-                        width={80}
-                        height={80}
-                        className="h-8 w-8 rounded-full"
-                        src={user?.avatar}
-                        alt=""
-                      />
+                      {
+                        user && user.avatar ? (
+                          <Image
+                          className="h-8 w-8 rounded-full"
+                          src={user.avatar}
+                          alt=""
+                          width={32}
+                          height={32}
+                        />
+                        ):(
+                          <UserIcon className="h-8 w-8 rounded-full" aria-hidden="true" />
+                        )
+                      }
+                    
                     </Menu.Button>
                   </div>
                   <Transition

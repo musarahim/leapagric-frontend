@@ -1,27 +1,54 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { HomeIcon } from '@heroicons/react/20/solid'
 
-interface Props {
-    title1?: string;
-    title2?: string;
-    title3?: string;
-    link1?: string;
-    link2?: string;
-   
-    [rest: string]: any;
-  }
+interface Item{
+    name: string,
+    href: string,
+    current: boolean
+}
+interface props{
+    pages: Item[]
+}
+ 
 
-function Breadcrump({title1,title2,title3,link1,link2,...rest}: Props) {
+function Breadcrump({pages}: props) {
   return (
-    <div className="text-sm breadcrumbs">
-    <ul>
-        {title1 && link1 ? <li><Link href={link1}>{title1}</Link></li> : null}
-        {title2 && link2 ? <li><Link href={link2}>{title2}</Link></li> : null}
-        {title3  ? <li><a>{title3}</a></li> : null}
-     
-    </ul>
-  </div>
+    <nav className="flex border-b border-gray-200 bg-white" aria-label="Breadcrumb">
+      <ol role="list" className="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6 lg:px-8">
+        <li className="flex">
+          <div className="flex items-center">
+            <a href="#" className="text-gray-400 hover:text-gray-500">
+              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+              <span className="sr-only">Home</span>
+            </a>
+          </div>
+        </li>
+        {pages.map((page) => (
+          <li key={page.name} className="flex">
+            <div className="flex items-center">
+              <svg
+                className="h-full w-6 flex-shrink-0 text-gray-200"
+                viewBox="0 0 24 44"
+                preserveAspectRatio="none"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+              </svg>
+              <Link
+                href={page.href}
+                className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                aria-current={page.current ? 'page' : undefined}
+              >
+                {page.name}
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </nav>
   )
 }
 
