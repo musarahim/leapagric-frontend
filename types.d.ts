@@ -161,6 +161,7 @@ type ServiceProvider = {
     location: string,
     address?: string,
     general_remarks?: string,
+    services?: Array<Service>,
 }
 
 type Expertise = {
@@ -193,3 +194,20 @@ type ExtensionWorkerResponse = {
     previous: string,
     results: Array<ExtensionWorker>
 }
+
+type Service = {
+         id?: number,
+        name: string,
+        price: number,
+        image: string,
+        hire_sell: string,
+        owner: string,
+        owner_name?: string,
+        owner_email?: string,
+        owner_contacts?: string,
+        alternative_contact?: string,
+        description: string
+        duration: string,
+        equipment_used: string,
+        material_used: string
+    }
