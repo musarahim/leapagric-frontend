@@ -130,3 +130,84 @@ type ProductList = {
     previous: string,
     results: Array<Product>
 }
+type chat = {
+    id?: number,
+    sender: number,
+    receiver?: number,
+    message: string,
+    created_at?: string,
+    updated_at?: string
+}
+
+type ServiceCategory = {
+    id?: number,
+    name: string,
+}
+
+type ServiceProvider = {
+    id?: number,
+    user: string
+    enterprise_name: string,
+    business_number: string,
+    email?: string,
+    website?: string,
+    service_logo: string,
+    services_offered: Array<ServiceCategory>,
+    target_audience: string,
+    business_model: string,
+    year_established: string,
+    number_of_employees: number,
+    certifications: string,
+    location: string,
+    address?: string,
+    general_remarks?: string,
+    services?: Array<Service>,
+}
+
+type Expertise = {
+    id?: number,
+    name: string,
+}
+
+type ExtensionWorker = {
+        user: number,
+        names?: string,
+        email?: string,
+        phone_number?: string,
+        alternative_contact?: string,
+        highest_education_level: string,
+        years_of_experience: number,
+        expertise_areas: Array<Expertise>,
+        district: string,
+        region: string,
+        county: string,
+        sub_county: string,
+        verified: string,
+        visibility: boolean,
+        general_remarks: string
+        avatar?: string,
+      }
+
+type ExtensionWorkerResponse = {
+    count: number,
+    next: string,
+    previous: string,
+    results: Array<ExtensionWorker>
+}
+
+type Service = {
+         id?: number,
+        name: string,
+        price: number,
+        image: string,
+        hire_sell: string,
+        owner: string,
+        owner_name?: string,
+        owner_email?: string,
+        owner_contacts?: string,
+        alternative_contact?: string,
+        description: string
+        duration: string,
+        equipment_used: string,
+        material_used: string
+    }

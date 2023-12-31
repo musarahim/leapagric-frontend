@@ -22,13 +22,18 @@ function ProductDetails({id}:props) {
 			</div>
 		);
 	}
-
+  const pages = [
+    { name: 'Home', href: '/dashboard', current: false },
+    { name: 'Market Access', href: '/market', current: false },
+    { name: 'Product', href: `/market/${product?.id}`, current: true },
+  ]
 
   return (
     <div>
+      <Breadcrump pages={pages} />
     <div className="pt-6">
     
-      <Breadcrump title1='Market' link1='/market' title2={product?.category} link2='#' title3={product?.name} />
+     
       {/* Image gallery */}
       <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -147,7 +152,7 @@ function ProductDetails({id}:props) {
 
             <button
               type="submit"
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Add to Cart
             </button>
