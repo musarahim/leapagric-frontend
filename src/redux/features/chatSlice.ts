@@ -1,6 +1,6 @@
-import { apiSlice } from "../services/chatApiSlice";
+import { chatSlice } from "../services/chatApiSlice";
 
-const chatApiSlice = apiSlice.injectEndpoints({
+const chatApiSlice = chatSlice.injectEndpoints({
   endpoints: (builder) => ({
     
     chatPost: builder.mutation({

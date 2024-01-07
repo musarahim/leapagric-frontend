@@ -130,7 +130,12 @@ function Navbar() {
        >
 				Extension Workers
 			</NavLink>
-      
+      <NavLink isMobile={isMobile}
+       href="/crops"
+       isSelected={isSelected('/crops')}
+       >
+				Production Protocals
+			</NavLink>
 		</>
 	);
   return (

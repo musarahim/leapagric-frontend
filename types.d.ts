@@ -97,6 +97,9 @@ type Crop = {
     id: number,
     name: string,
     image?: string,
+    crop_type: string,
+    growth_period: string,
+    period_type: string,
     description?: string
 
 }

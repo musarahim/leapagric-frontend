@@ -1,9 +1,9 @@
 "use client"
 import { cn } from '@/lib/utils'
+import { useChatPostMutation } from '@/redux/features/chatSlice'
+import { nanoid } from '@reduxjs/toolkit'
 import { FC, HTMLAttributes, useState } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
-import {useChatPostMutation} from '@/redux/features/chatSlice'
-import { nanoid } from '@reduxjs/toolkit'
 
 interface Props extends HTMLAttributes<HTMLDialogElement>{}
 
@@ -13,7 +13,12 @@ const  ChatInput:FC<Props> = ({className, ...props}) => {
     const message = {message:input, sender:nanoid(), isUserInput:true}
     const handlePost = () => {
       
-        post(message)
+        post(message).unwrap().then((res) => {
+            console.log(res)
+        }
+        ).catch((err) => {
+            console.log(err)
+        })
         setInput('')
     }
     
