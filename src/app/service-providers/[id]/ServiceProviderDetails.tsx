@@ -32,7 +32,7 @@ const moods = [
   { name: 'I feel nothing', value: null, icon: XMarkIconMini, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
 ]
 
-function classNames(...classes) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
