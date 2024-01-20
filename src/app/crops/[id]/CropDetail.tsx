@@ -1,12 +1,7 @@
 "use client"
 
 
-const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Invoices', href: '#' },
-  { name: 'Clients', href: '#' },
-  { name: 'Expenses', href: '#' },
-]
+
 const invoice = {
   subTotal: '$8,800.00',
   tax: '$1,760.00',
@@ -19,30 +14,6 @@ const invoice = {
       hours: '20.0',
       rate: '$100.00',
       price: '$2,000.00',
-    },
-    {
-      id: 2,
-      title: 'Website redesign',
-      description: 'Design and program new company website.',
-      hours: '52.0',
-      rate: '$100.00',
-      price: '$5,200.00',
-    },
-    {
-      id: 3,
-      title: 'Business cards',
-      description: 'Design and production of 3.5" x 2.0" business cards.',
-      hours: '12.0',
-      rate: '$100.00',
-      price: '$1,200.00',
-    },
-    {
-      id: 4,
-      title: 'T-shirt design',
-      description: 'Three t-shirt design concepts.',
-      hours: '4.0',
-      rate: '$100.00',
-      price: '$400.00',
     },
   ],
 }
@@ -93,14 +64,8 @@ function CropDetail({id}:props) {
                   </dd>
                 </div>
                 <div className="mt-8 sm:mt-6 sm:border-t sm:border-gray-900/5 sm:pl-4 sm:pt-6">
-                  <dt className="font-semibold text-gray-900">To</dt>
-                  <dd className="mt-2 text-gray-500">
-                    <span className="font-medium text-gray-900">Tuple, Inc</span>
-                    <br />
-                    886 Walter Street
-                    <br />
-                    New York, NY 12345
-                  </dd>
+                <img className="aspect-[3/2] w-full rounded-2xl object-cover" src="#" alt="" />
+
                 </div>
               </dl>
               <table className="mt-16 w-full whitespace-nowrap text-left text-sm leading-6">
@@ -143,49 +108,6 @@ function CropDetail({id}:props) {
                     </tr>
                   ))}
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <th scope="row" className="px-0 pb-0 pt-6 font-normal text-gray-700 sm:hidden">
-                      Subtotal
-                    </th>
-                    <th
-                      scope="row"
-                      colSpan={3}
-                      className="hidden px-0 pb-0 pt-6 text-right font-normal text-gray-700 sm:table-cell"
-                    >
-                      Subtotal
-                    </th>
-                    <td className="pb-0 pl-8 pr-0 pt-6 text-right tabular-nums text-gray-900">{invoice.subTotal}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="pt-4 font-normal text-gray-700 sm:hidden">
-                      Tax
-                    </th>
-                    <th
-                      scope="row"
-                      colSpan={3}
-                      className="hidden pt-4 text-right font-normal text-gray-700 sm:table-cell"
-                    >
-                      Tax
-                    </th>
-                    <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-gray-900">{invoice.tax}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="pt-4 font-semibold text-gray-900 sm:hidden">
-                      Total
-                    </th>
-                    <th
-                      scope="row"
-                      colSpan={3}
-                      className="hidden pt-4 text-right font-semibold text-gray-900 sm:table-cell"
-                    >
-                      Total
-                    </th>
-                    <td className="pb-0 pl-8 pr-0 pt-4 text-right font-semibold tabular-nums text-gray-900">
-                      {invoice.total}
-                    </td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
 
