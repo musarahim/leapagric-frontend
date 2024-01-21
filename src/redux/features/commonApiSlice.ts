@@ -17,7 +17,9 @@ const commonApiSlice = apiSlice.injectEndpoints({
     getCrops: builder.query<Crop[], void>({
         query: () => "/common/crops/",
       }),
-
+    retrieveCrop :  builder.query<Crop, number>({
+      query: (id) => `/common/crops/${id}/`,
+    }),
    
  
   }),
@@ -27,6 +29,7 @@ export const {
     useGetDistrictsQuery,
     useGetSectorsQuery,
     useGetRegionsQuery,
-    useGetCropsQuery
+    useGetCropsQuery,
+    useRetrieveCropQuery,
 
 } = commonApiSlice;

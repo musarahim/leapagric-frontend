@@ -90,6 +90,19 @@ type District ={
     region?:string
 }
 
+type ProductionProtocol = {
+    id?: number,
+    step: string,
+    crop?: string,
+    activity_name: string,
+    days_before_planting: string,
+    days_after_planting: string,
+    acceptable_timeline: string,
+    description: string,
+    value: 1.00,
+    is_activity_required: string
+
+}
 
 
 type Crop = {
@@ -100,7 +113,8 @@ type Crop = {
     crop_type: string,
     growth_period: string,
     period_type: string,
-    description?: string
+    description?: string,
+    crop_production_protocal?: Array<ProductionProtocol>,
 
 }
 

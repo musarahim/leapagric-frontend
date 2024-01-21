@@ -1,4 +1,6 @@
 "use client"
+import { Spinner } from "@/components"
+import { useRetrieveCropQuery } from "@/redux/features/commonApiSlice"
 
 
 
@@ -23,12 +25,16 @@ interface props {
   id:number,
 }
 
-function classNames(...classes:string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 function CropDetail({id}:props) {
-
+  const { data: crop, isLoading, isFetching } = useRetrieveCropQuery(id)
+  if (isLoading || isFetching) {
+    return (
+      <div className='flex justify-center my-8'>
+        <Spinner lg />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -39,32 +45,41 @@ function CropDetail({id}:props) {
 
             {/* Invoice */}
             <div className="-mx-4 px-4 py-8 shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-8 sm:pb-14 lg:col-span-3 lg:row-span-3 lg:row-end-2 xl:px-16 xl:pb-20 xl:pt-16">
-              <h2 className="text-base font-semibold leading-6 text-gray-900">Invoice</h2>
+              <h2 className="text-base font-semibold leading-6 text-gray-900">{crop?.name}</h2>
               <dl className="mt-6 grid grid-cols-1 text-sm leading-6 sm:grid-cols-2">
                 <div className="sm:pr-4">
-                  <dt className="inline text-gray-500">Issued on</dt>{' '}
-                  <dd className="inline text-gray-700">
-                    <time dateTime="2023-23-01">January 23, 2023</time>
-                  </dd>
+                  <dt className="inline text-gray-500">{crop?.crop_type}</dt>{' '}
+                  
                 </div>
                 <div className="mt-2 sm:mt-0 sm:pl-4">
-                  <dt className="inline text-gray-500">Due on</dt>{' '}
-                  <dd className="inline text-gray-700">
-                    <time dateTime="2023-31-01">January 31, 2023</time>
-                  </dd>
+                  
                 </div>
-                <div className="mt-6 border-t border-gray-900/5 pt-6 sm:pr-4">
-                  <dt className="font-semibold text-gray-900">From</dt>
-                  <dd className="mt-2 text-gray-500">
-                    <span className="font-medium text-gray-900">Acme, Inc.</span>
-                    <br />
-                    7363 Cynthia Pass
-                    <br />
-                    Toronto, ON N3Y 4H8
-                  </dd>
-                </div>
+                <div className="mt-6 border-t border-gray-100">
+        <dl className="divide-y divide-gray-100">
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Crop name</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{crop.name}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Type</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{crop?.crop_type}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Growth Period</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{crop?.growth_period}{' '} {crop?.period_type}</dd>
+          </div>
+        
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Description</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {crop?.description}
+            </dd>
+          </div>
+         
+        </dl>
+      </div>
                 <div className="mt-8 sm:mt-6 sm:border-t sm:border-gray-900/5 sm:pl-4 sm:pt-6">
-                <img className="aspect-[3/2] w-full rounded-2xl object-cover" src="#" alt="" />
+                <img className="aspect-[3/2] w-full rounded-2xl object-cover" src={crop?.image} alt="" />
 
                 </div>
               </dl>
@@ -78,33 +93,33 @@ function CropDetail({id}:props) {
                 <thead className="border-b border-gray-200 text-gray-900">
                   <tr>
                     <th scope="col" className="px-0 py-3 font-semibold">
-                      Projects
+                    Steps in {crop?.name} production
                     </th>
                     <th scope="col" className="hidden py-3 pl-8 pr-0 text-right font-semibold sm:table-cell">
-                      Hours
+                      Activity Done
                     </th>
                     <th scope="col" className="hidden py-3 pl-8 pr-0 text-right font-semibold sm:table-cell">
-                      Rate
+                    Activity Done
                     </th>
                     <th scope="col" className="py-3 pl-8 pr-0 text-right font-semibold">
-                      Price
+                      Required
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {invoice.items.map((item) => (
+                  {crop?.crop_production_protocal?.map((item) => (
                     <tr key={item.id} className="border-b border-gray-100">
-                      <td className="max-w-0 px-0 py-5 align-top">
-                        <div className="truncate font-medium text-gray-900">{item.title}</div>
-                        <div className="truncate text-gray-500">{item.description}</div>
+                      <td className="max-w-0 px-0 py-2 align-top whitespace-normal">
+                        <div className="font-medium text-gray-900">{item.step}{'. '}{item.activity_name}</div>
+                        <div className="break-all text-gray-500" dangerouslySetInnerHTML={{__html:item.description}}></div>
                       </td>
                       <td className="hidden py-5 pl-8 pr-0 text-right align-top tabular-nums text-gray-700 sm:table-cell">
-                        {item.hours}
+                        {item?.days_before_planting} Before planting
                       </td>
                       <td className="hidden py-5 pl-8 pr-0 text-right align-top tabular-nums text-gray-700 sm:table-cell">
-                        {item.rate}
+                        {item.days_after_planting} After planting
                       </td>
-                      <td className="py-5 pl-8 pr-0 text-right align-top tabular-nums text-gray-700">{item.price}</td>
+                      <td className="py-5 pl-8 pr-0 text-right align-top tabular-nums text-gray-700">{item.is_activity_required}</td>
                     </tr>
                   ))}
                 </tbody>
