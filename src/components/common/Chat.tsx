@@ -1,8 +1,51 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import ChatHeader from "./ChatHeader"
-import ChatInput from "./ChatInput"
+"use client"
+import io from 'socket.io-client';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import ChatHeader from "./ChatHeader";
+import ChatInput from "./ChatInput";
+
+// Define the server address and port
+const SERVER_ADDRESS = 'http://localhost'; // Replace with the actual IP address or hostname of your Rasa server
+const SERVER_PORT = 5005; // Replace with the actual port used by your Rasa server
+
 
 function Chat() {
+  // Connect to the Rasa server
+ const socket = io(`${SERVER_ADDRESS}:${SERVER_PORT}`);
+ // Listen for connection success
+socket.on('connect', () => {
+  console.log('Connected to Rasa server');
+  socket.emit(
+    'user_uttered', {
+      "message": "Hello",
+  }
+  );
+});
+socket.on('connect_error', (error) => {
+  // Write any connection errors to the console 
+  console.error(error);
+});
+
+// Listen for incoming messages from the Rasa server
+socket.on('bot_uttered', (data: any) => {
+  console.log('Bot message received')
+  console.log(`Bot: ${data.text}`);
+});
+
+const handlePost = (input: string) => {
+  console.log(`User: ${input}`);
+  // Send the user message to the Rasa server
+  socket.emit(
+    'user_uttered', {
+      "sender": "user",
+      "message": input,
+  }
+  );
+  socket.on('disconnect', () => {
+    console.log('Disconnected from Rasa server');
+});
+}
+
   return <Accordion 
   type="single" 
   collapsible
@@ -17,7 +60,7 @@ function Chat() {
         <AccordionContent>
           <div className='flex flex-col h-80'>
             messages
-            <ChatInput className="px-4" />
+            <ChatInput handlePost={handlePost} />
           </div>
           </AccordionContent>
       </div>

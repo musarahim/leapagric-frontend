@@ -228,3 +228,14 @@ type Service = {
         equipment_used: string,
         material_used: string
     }
+
+
+// rasa message
+type Message = {
+    sender?: string,
+    message?: string,
+    recipient_id?:string,
+    text?: string,
+    timestamp: string,
+    is_user_msg: boolean
+}
