@@ -236,6 +236,6 @@ type Message = {
     message?: string,
     recipient_id?:string,
     text?: string,
-    timestamp: string,
-    is_user_msg: boolean
+    timestamp: Date,
+    is_user_msg: boolean= false,
 }
