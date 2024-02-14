@@ -1,11 +1,12 @@
 "use client"
+import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 
 // Define the server address and port
-const SERVER_ADDRESS = 'http://localhost'; // Replace with the actual IP address or hostname of your Rasa server
+const SERVER_ADDRESS = 'http://localhost'; // Replace with the actual address of your Rasa server
 const SERVER_PORT = 5005; // Replace with the actual port used by your Rasa server
 
 
@@ -15,36 +16,55 @@ function Chat() {
  // Listen for connection success
 socket.on('connect', () => {
   console.log('Connected to Rasa server');
+  socket.emit('session_request', { session_id: "1334567788888877665" })
   socket.emit(
     'user_uttered', {
       "message": "Hello",
-  }
-  );
+      "session_id": "1334567788888877665"
+  });
+//listen from the server
+  socket.on('bot_uttered', (data: any) => {
+    console.log('Bot message received')
+    console.log(`Bot: ${data}`);
+  });
 });
 socket.on('connect_error', (error) => {
   // Write any connection errors to the console 
   console.error(error);
 });
 
-// Listen for incoming messages from the Rasa server
-socket.on('bot_uttered', (data: any) => {
-  console.log('Bot message received')
-  console.log(`Bot: ${data.text}`);
-});
+
 
 const handlePost = (input: string) => {
   console.log(`User: ${input}`);
   // Send the user message to the Rasa server
   socket.emit(
     'user_uttered', {
-      "sender": "user",
       "message": input,
+      "session_id": "1334567788888877665"
   }
   );
-  socket.on('disconnect', () => {
-    console.log('Disconnected from Rasa server');
-});
+  socket.on('bot_uttered', (data: any) => {
+    console.log('Bot message received')
+    console.log(`Bot: ${data}`);
+  });
+//   socket.on('disconnect', () => {
+//     console.log('Disconnected from Rasa server');
+// });
 }
+useEffect(() => {
+  console.log('useEffect')
+  
+  socket.on('bot_uttered', (data: any) => {
+    console.log('Bot message received')
+    console.log(`Bot: ${data}`);
+  });
+  return () => {
+    socket.off('bot_uttered')
+  }
+}
+, [])
+
 
   return <Accordion 
   type="single" 
