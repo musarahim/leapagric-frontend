@@ -1,71 +1,28 @@
 "use client"
-import { useEffect } from 'react';
-import io from 'socket.io-client';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
-import ChatHeader from "./ChatHeader";
-import ChatInput from "./ChatInput";
-
-// Define the server address and port
-const SERVER_ADDRESS = 'http://localhost'; // Replace with the actual address of your Rasa server
-const SERVER_PORT = 5005; // Replace with the actual port used by your Rasa server
-
+import { useChatPostMutation } from '@/redux/features/chatSlice'
+import { nanoid } from '@reduxjs/toolkit'
+import { useState } from 'react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
+import ChatHeader from "./ChatHeader"
+import ChatInput from "./ChatInput"
 
 function Chat() {
-  // Connect to the Rasa server
- const socket = io(`${SERVER_ADDRESS}:${SERVER_PORT}`);
- // Listen for connection success
-socket.on('connect', () => {
-  console.log('Connected to Rasa server');
-  socket.emit('session_request', { session_id: "1334567788888877665" })
-  socket.emit(
-    'user_uttered', {
-      "message": "Hello",
-      "session_id": "1334567788888877665"
-  });
-//listen from the server
-  socket.on('bot_uttered', (data: any) => {
-    console.log('Bot message received')
-    console.log(`Bot: ${data}`);
-  });
-});
-socket.on('connect_error', (error) => {
-  // Write any connection errors to the console 
-  console.error(error);
-});
-
-
-
-const handlePost = (input: string) => {
-  console.log(`User: ${input}`);
-  // Send the user message to the Rasa server
-  socket.emit(
-    'user_uttered', {
-      "message": input,
-      "session_id": "1334567788888877665"
-  }
-  );
-  socket.on('bot_uttered', (data: any) => {
-    console.log('Bot message received')
-    console.log(`Bot: ${data}`);
-  });
-//   socket.on('disconnect', () => {
-//     console.log('Disconnected from Rasa server');
-// });
+  const [post, {isLoading, isSuccess, isError}] = useChatPostMutation()
+  const [messages, setMessages] = useState<Message[]>([])
+ 
+  const handlePost  = (input: string) => {
+    const message = {message:input, sender:nanoid(), isUserInput:true}
+    messages.push({ ...message, timestamp: new Date(), is_user_msg: true });
+    post(message).unwrap().then((res) => {
+        console.log(res)
+        setMessages([...messages, res])
+    }
+    ).catch((err) => {
+        console.log(err)
+    })
+   
 }
-useEffect(() => {
-  console.log('useEffect')
-  
-  socket.on('bot_uttered', (data: any) => {
-    console.log('Bot message received')
-    console.log(`Bot: ${data}`);
-  });
-  return () => {
-    socket.off('bot_uttered')
-  }
-}
-, [])
-
-
+console.log(messages)
   return <Accordion 
   type="single" 
   collapsible
@@ -79,7 +36,22 @@ useEffect(() => {
        </AccordionTrigger>
         <AccordionContent>
           <div className='flex flex-col h-80'>
-            messages
+            <div className='flex-1 overflow-y-auto px-4 py-2'>
+              {messages.map((message, index) => {
+                return <div key={index} className='flex flex-col items-start'>
+                  <div className='flex items-center'>
+                    <div className='flex items-center justify-center w-8 h-8 bg-zinc-100 rounded-full'>
+                      <svg className='w-5 h-5 text-gray-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 6v6m0 0v6m0-6h6m-6 0H6' />
+                      </svg>
+                    </div>
+                    <div className='ml-2 text-xs text-gray-500'>{message?.sender}</div>
+                  </div>
+                  <div className='mt-1 text-sm text-gray-900'>{message.text}</div>
+                </div>
+              })}
+            </div>
+
             <ChatInput handlePost={handlePost} />
           </div>
           </AccordionContent>
