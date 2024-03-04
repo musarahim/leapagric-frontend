@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import ChatHeader from "./ChatHeader"
 import ChatInput from "./ChatInput"
+import ChatMessages from "./ChatMessages"
 
 function Chat() {
   const [post, {isLoading, isSuccess, isError}] = useChatPostMutation()
@@ -14,8 +15,8 @@ function Chat() {
     const message = {message:input, sender:nanoid(), isUserInput:true}
     messages.push({ ...message, timestamp: new Date(), is_user_msg: true });
     post(message).unwrap().then((res) => {
-        console.log(res[0], 'response after post')
-        setMessages([...messages, res[0]])
+        console.log(res, 'response after post')
+        setMessages([...messages, res])
     }
     ).catch((err) => {
         console.log(err)
@@ -36,15 +37,12 @@ console.log(messages)
        </AccordionTrigger>
         <AccordionContent>
           <div className='flex flex-col h-80'>
+            <ChatMessages messages={messages}/>
             <div className='flex-1 overflow-y-auto px-4 py-2'>
               {messages.map((message, index) => {
                 return <div key={index} className='flex flex-col items-start'>
                   <div className='flex items-center'>
-                    <div className='flex items-center justify-center w-8 h-8 bg-zinc-100 rounded-full'>
-                      <svg className='w-5 h-5 text-gray-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 6v6m0 0v6m0-6h6m-6 0H6' />
-                      </svg>
-                    </div>
+                  
                     <div className='ml-2 text-xs text-gray-500'>{message?.message}</div>
                   </div>
                   <div className='mt-1 text-sm text-gray-900'>{message.text}</div>
