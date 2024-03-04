@@ -14,8 +14,8 @@ function Chat() {
     const message = {message:input, sender:nanoid(), isUserInput:true}
     messages.push({ ...message, timestamp: new Date(), is_user_msg: true });
     post(message).unwrap().then((res) => {
-        console.log(res)
-        setMessages([...messages, res])
+        console.log(res[0], 'response after post')
+        setMessages([...messages, res[0]])
     }
     ).catch((err) => {
         console.log(err)
@@ -45,7 +45,7 @@ console.log(messages)
                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 6v6m0 0v6m0-6h6m-6 0H6' />
                       </svg>
                     </div>
-                    <div className='ml-2 text-xs text-gray-500'>{message?.sender}</div>
+                    <div className='ml-2 text-xs text-gray-500'>{message?.message}</div>
                   </div>
                   <div className='mt-1 text-sm text-gray-900'>{message.text}</div>
                 </div>
