@@ -238,4 +238,5 @@ type Message = {
     text?: string,
     timestamp: Date,
     is_user_msg: boolean= false,
+    image?: string,
 }

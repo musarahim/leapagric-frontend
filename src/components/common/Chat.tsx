@@ -2,6 +2,7 @@
 import { useChatPostMutation } from '@/redux/features/chatSlice'
 import { nanoid } from '@reduxjs/toolkit'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import ChatHeader from "./ChatHeader"
 import ChatInput from "./ChatInput"
@@ -15,11 +16,12 @@ function Chat() {
     const message = {message:input, sender:nanoid(), isUserInput:true}
     messages.push({ ...message, timestamp: new Date(), is_user_msg: true });
     post(message).unwrap().then((res) => {
-        console.log(res, 'response after post')
-        setMessages([...messages, res])
+        console.log(...res, 'response after post')
+        setMessages([...messages, ...res])
     }
     ).catch((err) => {
         console.log(err)
+        toast.error('Something went wrong, please try again later.')
     })
    
 }
@@ -38,7 +40,7 @@ console.log(messages)
         <AccordionContent>
           <div className='flex flex-col h-80'>
             <ChatMessages messages={messages}/>
-            <div className='flex-1 overflow-y-auto px-4 py-2'>
+            {/* <div className='flex-1 overflow-y-auto px-4 py-2'>
               {messages.map((message, index) => {
                 return <div key={index} className='flex flex-col items-start'>
                   <div className='flex items-center'>
@@ -48,9 +50,9 @@ console.log(messages)
                   <div className='mt-1 text-sm text-gray-900'>{message.text}</div>
                 </div>
               })}
-            </div>
+            </div> */}
 
-            <ChatInput handlePost={handlePost} />
+            <ChatInput handlePost={handlePost} isLoading={isLoading} />
           </div>
           </AccordionContent>
       </div>
